@@ -6,8 +6,6 @@ export default class UsersController {
   constructor() {}
 
   async login({ request, response }: HttpContext) {
-    console.log('userLogin')
-
     const [error, userDto] = UserDto.create(request.body())
     if (error) {
       return response.status(400).json({ error })

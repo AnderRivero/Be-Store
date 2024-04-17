@@ -36,7 +36,7 @@ export default class Customer extends BaseModel {
   declare country: string
 
   @hasMany(() => Sale)
-  declare posts: HasMany<typeof Sale>
+  declare sales: HasMany<typeof Sale>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

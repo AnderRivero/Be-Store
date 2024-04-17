@@ -6,7 +6,7 @@ import SaleDto from '../dtos/sales.dto.js'
 
 export class SaleService {
   async create(saleDto: SaleDto) {
-    const product = await Product.findBy({ id: saleDto.productId })
+    const product = await Product.findBy({ id: saleDto.productId, isActive: true })
     if (!product) throw 'Product not found'
 
     const customer = await Customer.findBy({ id: saleDto.customerId })

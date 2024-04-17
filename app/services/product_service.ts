@@ -33,10 +33,13 @@ export class ProductService {
     return ProductShowDto.create(result)
   }
 
-  async destroy(id: number) {
-    const product = await Product.findOrFail(id)
+  async destroy(productId: number) {
+    const product = await Product.findOrFail(productId)
     product.isActive = false
-    return await product.save()
+    await product.save()
+
+    const { id, name, price, isActive, createdAt } = product
+    return { id, name, price, isActive, createdAt }
   }
 
   async update(productId: number, body: { [key: string]: any }) {
