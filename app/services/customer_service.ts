@@ -37,8 +37,8 @@ export class CustomerService {
   }
 
   async findOne(id: number, date?: string) {
-    const result = await Customer.findBy({ id })
-    if (!result) throw 'Customer not found'
+    const customer = await Customer.findBy({ id })
+    if (!customer) throw 'Customer not found'
 
     let sales
     if (!date) {
@@ -54,9 +54,9 @@ export class CustomerService {
 
     const salesDto = sales.map((sale) => SaleShowDto.create(sale))
 
-    const customer = CustomerShowDto.create(result, salesDto)
+    const customerDto = CustomerShowDto.create(customer, salesDto)
 
-    return customer
+    return customerDto
   }
 
   async destroy(id: number) {
